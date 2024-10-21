@@ -10,7 +10,5 @@ else
   CMD="dotnet"
 fi
 
-echo "Remaining arguments:" "$@"
-
 ${CMD} "$@"
 
