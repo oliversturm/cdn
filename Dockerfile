@@ -5,7 +5,7 @@ WORKDIR /usr/local
 ARG WASI_OS=linux
 ARG WASI_VERSION=24
 ARG WASI_VERSION_FULL=${WASI_VERSION}.0
-ARG WASMTIME_VERSION=v25.0.2
+ARG WASMTIME_VERSION=v25.0.3
 ARG WASMTIME_OS=linux
 
 ARG WASI_ARCH=unset
@@ -16,8 +16,8 @@ RUN echo "Targeting ${TARGETARCH}"
 
 # need xz for the wasmtime archive
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-  && apt-get install -y xz-utils \
-  && rm -rf /var/lib/apt/lists/*
+    && apt-get install -y xz-utils \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY ./fetch-wasi-sdk.sh /usr/local/bin
 COPY ./fetch-wasmtime.sh /usr/local/bin
