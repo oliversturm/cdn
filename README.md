@@ -11,15 +11,15 @@ Examples:
 
 ```bash
 # Default: run `dotnet build`
-> docker run --rm -v $(pwd):/src oliversturm/ndc:<version>
+> docker run --rm -v $(pwd):/src oliversturm/cdn:<version>
 
 # Sub-default: run `dotnet` with supplied arguments
-> docker run --rm -v $(pwd):/src oliversturm/ndc:<version> watch test
-> docker run --rm -v $(pwd):/src oliversturm/ndc:<version> publish
-> docker run --rm -v $(pwd):/src oliversturm/ndc:<version> run
+> docker run --rm -v $(pwd):/src oliversturm/cdn:<version> watch test
+> docker run --rm -v $(pwd):/src oliversturm/cdn:<version> publish
+> docker run --rm -v $(pwd):/src oliversturm/cdn:<version> run
 
 # Run `wasmtime` with any arguments
-> docker run --rm -v $(pwd):/src oliversturm/ndc:<version> wasmtime run --dir . dotnet.wasm myproject
+> docker run --rm -v $(pwd):/src oliversturm/cdn:<version> wasmtime run --dir . dotnet.wasm myproject
 ```
 
 Versions currently supported:
