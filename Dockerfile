@@ -15,8 +15,9 @@ ARG TARGETARCH
 RUN echo "Targeting ${TARGETARCH}"
 
 # need xz for the wasmtime archive
+# python for AOT builds (Emscripten)
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && apt-get install -y xz-utils \
+    && apt-get install -y xz-utils python3\
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./fetch-wasi-sdk.sh /usr/local/bin
