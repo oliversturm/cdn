@@ -17,7 +17,7 @@ RUN echo "Targeting ${TARGETARCH}"
 # need xz for the wasmtime archive
 # python for AOT builds (Emscripten)
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && apt-get install -y xz-utils python3\
+    && apt-get install -y xz-utils python3 llvm nodejs binaryen \
     && rm -rf /var/lib/apt/lists/*
 
 COPY ./fetch-wasi-sdk.sh /usr/local/bin
@@ -33,6 +33,14 @@ COPY ./start.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start.sh
 
 WORKDIR /src
+
+ENV WASI_SDK_PATH=/usr/local/wasi-sdk-current
+ENV LLVM_ROOT=/usr/lib/llvm-14
+ENV DOTNET_EMSCRIPTEN_LLVM_ROOT=${LLVM_ROOT}
+ENV DOTNET_EMSCRIPTEN_NODE_JS=/usr/bin/node
+ENV DOTNET_EMSCRIPTEN_BINARYEN_ROOT=/usr/bin
+
+USER root
 
 ENTRYPOINT ["/usr/local/bin/start.sh"]
 
