@@ -28,4 +28,4 @@ tar xvf ${FILE}
 WASI_SDK_PATH=/usr/local/wasi-sdk-${WASI_VERSION_FULL}-${SCRIPT_WASI_ARCH}-${WASI_OS}
 
 touch ${WASI_SDK_PATH}/VERSION${WASI_VERSION}
-echo "${WASI_SDK_PATH}" > ./wasi-sdk-path
+ln -s ${WASI_SDK_PATH} /usr/local/wasi-sdk-current
