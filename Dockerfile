@@ -20,8 +20,14 @@ RUN echo "Targeting ${TARGETARCH}"
 # need xz for the wasmtime archive
 # python for AOT builds (Emscripten)
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-    && apt-get install -y xz-utils python3 llvm nodejs binaryen \
+    && apt-get install -y xz-utils python3 llvm nodejs binaryen vim mc gnupg \
+    && curl -fsSL https://apt.fury.io/nushell/gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/fury-nushell.gpg \
+    && echo "deb https://apt.fury.io/nushell/ /" >> /etc/apt/sources.list.d/fury.list \
+    && apt-get update \
+    && apt-get install -y nushell \
     && rm -rf /var/lib/apt/lists/*
+
+COPY ./config.nu /root/.config/nushell/config.nu
 
 COPY ./fetch-wasi-sdk.sh /usr/local/bin
 COPY ./fetch-wasmtime.sh /usr/local/bin
@@ -44,6 +50,7 @@ ENV LLVM_ROOT=/usr/lib/llvm-14
 ENV DOTNET_EMSCRIPTEN_LLVM_ROOT=${LLVM_ROOT}
 ENV DOTNET_EMSCRIPTEN_NODE_JS=/usr/bin/node
 ENV DOTNET_EMSCRIPTEN_BINARYEN_ROOT=/usr/bin
+ENV HOST_DIR=/src
 
 USER root
 
