@@ -17,7 +17,7 @@ $env.PROMPT_COMMAND = {
     $path
   }
 
-  $"[CDN9] (ansi green_bold)($shown)(ansi reset)"
+  $"[CDN8] (ansi green_bold)($shown)(ansi reset)"
 }
 
 $env.PROMPT_INDICATOR = " -> "
