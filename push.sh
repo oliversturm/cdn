@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker push oliversturm/cdn:9
+docker push oliversturm/cdn:10
+
